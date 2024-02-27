@@ -1,6 +1,5 @@
 package com.phonebook.tests;
 
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -9,33 +8,40 @@ public class LoginTests extends TestBase{
 
     @BeforeMethod
     public void ensurePrecondition(){
-        //if login link is not present
-        if (!isElementPresent(By.cssSelector("[href='/login']"))){
-            //click on sign out button
-            click(By.xpath("//button[.='Sign Out']"));
+
+        if (!isLoginLinkPresent()){
+
+            clickOnSignOutButton();
         }
     }
 
     @Test
     public void loginPositiveTest(){
 
-        click(By.cssSelector("[href='/login']"));
+        clickOnLoginLink();
 
-        //enter email
-        type(By.name("email"), "babqa123@gmail.com");
+        fillLoginRegisterForm(new User()
+                .setEmail("babqa123@gmail.com")
+                .setPassword("Qwerty123$"));
 
-        //enter password
-        type(By.name("password"), "Qwerty123$");
-
-        //click on the Login button
-        click(By.name("login"));
+        clickOnLoginButton();
 
         //assert Sign put present
-        Assert.assertTrue(isElementPresent(By.xpath("//button[.='Sign Out']")));
+        Assert.assertTrue(isSignOutButtonPresent());
     }
+    @Test
+    public void loginNegativeTestWithoutEmail(){
 
+        clickOnLoginLink();
 
+        fillLoginRegisterForm(new User()
+                .setPassword("Qwerty123$"));
 
+        clickOnLoginButton();
+
+        //assert Sign put present
+        Assert.assertTrue(isAlertAppears());
+    }
 
 
 }
