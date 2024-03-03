@@ -8,15 +8,15 @@ public class HomePageTests extends TestBase {
 
     @BeforeMethod
     public void precondition(){
-        if (!isHomeComponentPresent()){
-            clickOnHomeLink();
+        if (!app.getHomePage().isHomeComponentPresent()){
+            app.getHomePage().clickOnHomeLink();
         }
     }
 
     @Test
     public void isHomeComponentPresentTest(){
 //        System.out.println("Home page is " + isHomeComponentPresent());
-        Assert.assertTrue(isHomeComponentPresent());
+        Assert.assertTrue(app.getHomePage().isHomeComponentPresent());
     }
 
 }
