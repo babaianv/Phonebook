@@ -1,12 +1,9 @@
 .gradle
-build/
+#build/
 setting.gradle
 gradlew
 gradlew/
 *.bat
-
-*.log
-*.png
 
 ### IntelliJ IDEA ###
 *.idea
@@ -14,4 +11,8 @@ gradlew/
 *.iml
 *.ipr
 out/
+
+*.log
+*.png
+
 
